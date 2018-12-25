@@ -69,7 +69,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-   return value.substring(7, value.length-1);
+   return value.substring(7, value.length - 1);
 }
 
 
@@ -145,7 +145,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-    return str.substring(1,str.length-1);
+    return str.substring(1,str.length - 1);
 }
 
 
@@ -201,7 +201,29 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-    throw new Error('Not implemented');
+    var result = '';
+    for (let h = 1; h <= height; h++) 
+    {
+        for (let w = 1; w <= width; w++)
+        {
+            if(h == 1 && w == 1)
+                result += '┌';
+            else if(h == 1 && w ==  width)
+                result += '┐';
+            else if(h == height && w == 1)
+                result += '└';
+            else if(h ==  height && w == width)
+                result += '┘';
+            else if(w == 1 || w == width)
+                result+= '│';
+            else if(h == 1 || h == height)
+                result+= '─';
+            else
+                result+= ' ';            
+        }
+        result += '\n';
+    }
+  return result;
 }
 
 
@@ -238,12 +260,12 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-   if(typeof(value) == 'string')
-    return true; 
-    else if (value != null && typeof(value) == 'object' &&  value.length > 0 && typeof(value[0]) == 'string')
-    return true;
+    if (typeof(value) == 'string')
+        return true; 
+    else if (value != null && typeof(value) == 'object' && typeof(value[0]) == 'string')
+        return true;
     else 
-    return false;
+        return false;
 }
 
 
@@ -272,7 +294,13 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    throw new Error('Not implemented');
+    var deck = [
+        'A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
+        'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
+        'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
+        'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'
+    ];
+    return deck.indexOf(value);
 }
 
 
